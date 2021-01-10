@@ -7,7 +7,7 @@ import sqlite3
 import sys
 from getpass import getpass
 
-from config import DB_PATH, PASSWORD_LENGTH_MIN, HASH_ALGORITHM
+from config import DB_PATH, PASSWORD_LENGTH_MIN, HASH_ALGORITHM, HASH_SALTY
 
 
 if len(sys.argv) != 2:
@@ -34,6 +34,8 @@ while not password_ok:
     else:
         print("ERROR: passwords don't match")
 
+salty = hash_func(HASH_SALTY.encode("UTF-8")).hexdigest()
+password = password + salty
 password = hash_func(password.encode("UTF-8")).hexdigest()
 
 db = sqlite3.connect(DB_PATH)
