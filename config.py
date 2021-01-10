@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # Path where users database should be stored
-DB_PATH = '/etc/openvpn/test.sqlite'
+DB_PATH = '/etc/openvpn/file.name'
 # Minimum required length for passwords when creating users
 PASSWORD_LENGTH_MIN = 5
 # Hash algorithm to use for passwords storage. Can be one of:
