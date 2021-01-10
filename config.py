@@ -7,5 +7,5 @@ PASSWORD_LENGTH_MIN = 5
 # Hash algorithm to use for passwords storage. Can be one of:
 # md5, sha1, sha224, sha256, sha384, sha512
 HASH_ALGORITHM = 'sha512'
-# Add a SALT to the password
-HASH_SALTY = ''
+# Add a SALT to the password.  Change SALT accordingly
+HASH_SALTY = 't0p_$Ecr3t!'
