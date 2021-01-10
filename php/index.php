@@ -3,7 +3,7 @@ session_start();
 include("db.php");
 ?>
 <?php
-$saltysalt = hash('sha512',"t0p$eCRT");
+$saltysalt = hash('sha512',"t0p$eCRT"); # EDIT ME
 $msg = "";
 if(isset($_POST['submitBtnLogin'])) {
         $username = trim($_POST['username']);
