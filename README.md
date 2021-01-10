@@ -20,7 +20,7 @@ using SQLite to store credentials.
         - sha384
         - sha512
         - or any other algorithm supported by the OpenSSL library used by your Python installation.
-    - `HASH_SALTY`: This input will be HASHED then added to your password, then HASHED again with you selected algorithm
+    - `HASH_SALTY`: This input will be HASHED then added to your password, then HASHED again with your selected algorithm
     
 - Edit your OpenVPN server configuration file and add this line:
 
