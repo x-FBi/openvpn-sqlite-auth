@@ -41,10 +41,18 @@ password = hash_func(password.encode("UTF-8")).hexdigest()
 db = sqlite3.connect(DB_PATH)
 cursor = db.cursor()
 try:
-    cursor.execute("UPDATE users SET password = (?) WHERE username = (?);",(password, username))
-except sqlite3.IntegrityError:
-    print("ERROR: An error occured when updating '%s' password" % username)
-    sys.exit(2)
-db.commit()
+    cursor.execute("SELECT COUNT(*) as count FROM users WHERE username = (?);", (username,))
+    user = cursor.fetchone()
+    ucount = user[0]
+    if ucount == 1:
+        cursor.execute("UPDATE users SET password = (?) WHERE username = (?);", (password, username))
+    else:
+        print("Error: User '%s' was not found" % username)
+        sys.exit(2)
 
-print("* User %s password was successfully updated!" % username)
+except sqlite3.IntegrityError:
+    print("ERROR")
+    sys.exit(2)
+
+db.commit()
+print("* User %s password successfully updated" % username)
