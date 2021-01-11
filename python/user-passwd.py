@@ -23,20 +23,6 @@ if hash_func is None:
 
 username = sys.argv[1]
 password_ok = False
-while not password_ok:
-    password = getpass()
-    if len(password) < PASSWORD_LENGTH_MIN:
-        print("ERROR: password must be at least %d characters long" % PASSWORD_LENGTH_MIN)
-        continue
-    password_confirm = getpass('Confirm: ')
-    if password == password_confirm:
-        password_ok = True
-    else:
-        print("ERROR: passwords don't match")
-
-salty = hash_func(HASH_SALTY.encode("UTF-8")).hexdigest()
-password = password + salty
-password = hash_func(password.encode("UTF-8")).hexdigest()
 
 db = sqlite3.connect(DB_PATH)
 cursor = db.cursor()
@@ -45,6 +31,20 @@ try:
     user = cursor.fetchone()
     ucount = user[0]
     if ucount == 1:
+        while not password_ok:
+            password = getpass()
+            if len(password) < PASSWORD_LENGTH_MIN:
+                print("ERROR: password must be at least %d characters long" % PASSWORD_LENGTH_MIN)
+                continue
+            password_confirm = getpass('Confirm: ')
+            if password == password_confirm:
+                password_ok = True
+            else:
+                print("ERROR: passwords don't match")
+
+        salty = hash_func(HASH_SALTY.encode("UTF-8")).hexdigest()
+        password = password + salty
+        password = hash_func(password.encode("UTF-8")).hexdigest()
         cursor.execute("UPDATE users SET password = (?) WHERE username = (?);", (password, username))
     else:
         print("Error: User '%s' was not found" % username)
