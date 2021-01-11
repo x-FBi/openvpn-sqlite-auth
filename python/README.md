@@ -43,4 +43,5 @@ using SQLite to store credentials.
 
   - `./user-add.py <username>`: Add a new user to the database.
   - `./user-del.py <username>`: Remove an user from the database.
+  - `./user-passwd.py <username>`: Update the users password
   - `./user-list.py`: List registered users.
