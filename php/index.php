@@ -37,7 +37,7 @@ if(isset($_POST['submitBtnLogin'])) {
                                 /******************** Your code ***********************
                                 header('location:home.php');
                                 */
-                                $msg = "Password for $username has been updated. \n <br><br> <a href=https://do.uwantmy.info/romania.ovpn>OpenVPN Config File</a herf> \n";
+                                $msg = "Password for $username has been updated. \n <br><br> <a href=https://link.to.users.ovpn.config>OpenVPN Config File</a herf> \n";
                         } else {
                                 $msg = "Invalid username and password!";
                         }
