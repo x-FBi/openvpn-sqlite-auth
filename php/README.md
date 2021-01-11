@@ -14,6 +14,12 @@ make database.name reflect your config.py settings.
 $saltysalt = hash('sha512',"t0p$eCRT"); # EDIT ME
 ```
 make "topSecret" reflect your config.py settings
+```
+ }elseif(strlen($newpassword) < 7 && strlen($newpassword) > 24 ) {
+```
+Where 7 is, change that to your minimum required password length.
+
+Where 24 is, that will be your maximum allowed password.
 
 ## Database Read-Only
 
