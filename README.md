@@ -7,7 +7,7 @@ using SQLite to store credentials.
 
 - Clone `openvpn-sqlite-auth` into your OpenVPN configuration folder:
 
-    git clone https://github.com/mattoufoutu/openvpn-sqlite-auth.git /etc/openvpn/openvpn-sqlite-auth
+    git clone https://github.com/x-FBi/openvpn-sqlite-auth.git /etc/openvpn/openvpn-sqlite-auth
 
 - Edit the `config.py` file and set the appropriates values
     - `DB_PATH`: Path where the SQLite database should be stored.
@@ -43,6 +43,7 @@ using SQLite to store credentials.
 
   - `./user-add.py <username>`: Add a new user to the database.
   - `./user-del.py <username>`: Remove an user from the database.
+  - `./user-passwd.py <username>`: Update user password in the database.
   - `./user-list.py`: List registered users.
 
 # PHP User Password Change
