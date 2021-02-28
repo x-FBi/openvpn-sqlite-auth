@@ -15,7 +15,7 @@ if(isset($_POST['submitBtnLogin'])) {
                         $msg = "Your new password doesn't match.";
                 }elseif($password == $verifypassword) {
                         $msg = "Your New Password is the same as your old password <br> Kindly Retry With a New Password.";
-                }elseif(strlen($newpassword) < 7 && strlen($newpassword) > 24) {
+                }elseif(strlen($newpassword) < 7 || strlen($newpassword) > 24) {
                         $msg = "Your new password must be between 7 to 24 characaters long";
                 }else {
                 $password = hash('sha512', $password.$saltysalt); // Add Salt, if need be.
