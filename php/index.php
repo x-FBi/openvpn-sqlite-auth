@@ -53,31 +53,36 @@ if(isset($_POST['submitBtnLogin'])) {
 }
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitionaltd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>OpenVPN Password Update Tool</title>
 <style>
 .clearfix { clear:both; }
+body {
+  font-family: sans-serif;
+  background-image: url("https://cdn.wallpapersafari.com/21/18/6JqCNW.jpg");
+}
 span { clear:both; display:block; margin-bottom:30px; }
 span a { font-weight:bold; color:#0099FF; }
 label { margin-top:20px; margin-bottom:3px; font-weight:bold;}
+
 .loginTable {
-        text-align: center; /* Adding to all */
         margin: auto;
-        position:absolute;
-        left:0;
-        top:0;
-        right:0;
-        bottom:0;
+       /*position:absolute;*/
+        left:50%;
+        right:50%;
+        top:5%;
         width:400px;
         height:200px;
+        background: #191919;
         border:2px solid #0099FF;
         padding:10px;
+        border-radius: 24px;
+        text-align: center;
 }
 .loginTable label {
-        text-align: center; /* Adding to all */
         display:block;
         margin-bottom:3px;
         color:#0099FF;
@@ -92,17 +97,41 @@ label { margin-top:20px; margin-bottom:3px; font-weight:bold;}
         border-bottom:2px solid #0099FF;
         margin-bottom:10px;
         color:#0099FF;
-        text-align: center; /* Adding to all */
 }
-.loginTable #username, #password,#mname,#verifypassword,#newpassword {
-        width:365px;
-        margin-bottom:7px;
-        padding:3px 10px;
-        text-align: center; /* Adding to all */
+.loginTable #username, #password, #mname, #verifypassword, #newpassword, #captcha {
+        border:0;
+        background: none;
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        border: 2px solid #3498db;
+        padding: 14px 10px;
+        width: 200px;
+        outline: none;
+        color: white;
+        border-radius: 24px;
+        transition: 0.25s;
+}
+.loginTable #username:focus, #password:focus,#mname:focus,#verifypassword:focus,#newpassword:focus, #captcha:focus {
+  width: 280px;
+  border-color: #2ecc71;
 }
 .loginTable #submitBtnLogin {
-        padding:5px 20px;
-        text-align: center; /* Adding to all */
+  border:0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #2ecc71;
+  padding: 14px 40px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+}
+.loginTable #submitBtnLogin:hover{
+  background: #2ecc71;
 }
 .loginTable .loginMsg {
         color:#FF0000;
@@ -141,7 +170,14 @@ label { margin-top:20px; margin-bottom:3px; font-weight:bold;}
                     <input type="password" name="verifypassword" id="verifypassword" value="" autocomplete="off" /></td>
                   </tr>
                   <tr>
-                        <td><input type="submit" name="submitBtnLogin" id="submitBtnLogin" value="Login" /><span class="loginMsg"><br><?php echo @$msg;?></span></td>
+                        <td><label>Captcha:</label>
+                        <input type="text" name="captcha" id="captcha"/>
+                        <p><br />
+                        <img src="captcha.php?rand=<?php echo rand(); ?>" id='captcha_image'>
+                        </p>
+                        </td>
+                  <tr>
+                        <td><input type="submit" name="submitBtnLogin" id="submitBtnLogin" value="Change Password" <span class="loginMsg"><br><?php echo @$msg;?></span></td>
                   </tr>
                 </table>
                 </form>
