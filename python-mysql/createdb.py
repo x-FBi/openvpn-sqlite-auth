@@ -12,21 +12,10 @@ connection = database.connect(
     host=DB_HOST,
 )
 cursor = connection.cursor()
+DB = "CREATE DATABASE IF NOT EXISTS %s" % DB_NAME # Create database, unless it exists
 
 try:
-    cursor.execute("SHOW DATABASES")
-    for x in cursor:
-        print(x)
-        if x == DB_NAME:
-            print(f"Database %s Already Exists" % DB_NAME)
-            sys.exit
-except database.Error as e:
-    print(f"Error:  {e} ")
-    sys.exit
-
-try:
-    print(f"CREATE DATABASE %s;" % DB_NAME)
-    cursor.execute("create database if not exists %s", (DB_NAME, ))
+    cursor.execute(DB)
     print(f"* Created Database %s" % DB_NAME)
 except database.Error as e:
     print(f"Error Creating Database: {e} ")
