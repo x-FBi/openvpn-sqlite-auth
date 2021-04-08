@@ -41,11 +41,14 @@ connection = database.connect(
     database = DB_NAME
 )
 
+au = "INSERT INTO users VALUES %s, %s;"  %(username, password)
+print(au)
 cursor = connection.cursor()
 try:
-    cursor.execute("INSERT INTO users VALUES (%s, %s);", (username, password))
+    cursor.execute("REPLACE INTO users(usernames, passwords) VALUES (%s, %s);", (username, password))
 except database.IntegrityError as e:
     print(f"ERROR: ".format(e))
     sys.exit(2)
-connection.commit
+
+connection.commit()
 print(f"* User %s successfully created" % username)
