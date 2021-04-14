@@ -12,7 +12,7 @@ connection = database.connect(
 cursor = connection.cursor()
 
 try:
-     cursor.execute("SELECT username FROM users;")
+     cursor.execute("SELECT usernames FROM users;")
      users = cursor.fetchall()
      print("*** OpenVPN access list:")
      for user in users:
