@@ -20,10 +20,15 @@ hash_func = getattr(hashlib, HASH_ALGORITHM)
 salty = hash_func(HASH_SALTY.encode("utf-8")).hexdigest()
 
 ovpnuser = (os.environ['username'])
+testuser = ovpnuser
 ovpnuser = "SELECT * FROM users WHERE usernames = '" + ovpnuser + "';"
 print(ovpnuser)
 cursor.execute(ovpnuser)
 result = cursor.fetchone()
+f = open('/var/log/auth-error.log', 'a')
+f.write("SQL: " + ovpnuser)
+f.write("OVPN User: " + testuser)
+f.close()
 
 if result is None:
     sys.exit(1)
