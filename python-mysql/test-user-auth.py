@@ -19,7 +19,7 @@ cursor = connection.cursor()
 hash_func = getattr(hashlib, HASH_ALGORITHM)
 salty = hash_func(HASH_SALTY.encode("utf-8")).hexdigest()
 
-ovpnuser = (os.environ['username'])
+ovpnuser = os.environ.get('username')
 testuser = ovpnuser
 ovpnuser = "SELECT * FROM users WHERE usernames = '" + ovpnuser + "';"
 print(ovpnuser)
@@ -40,7 +40,7 @@ passw = (os.environ['password'] + salty) #Salt this mofo
 f = open('/var/log/auth-error.log', 'a')
 f.write("passwords: " + passwords)
 f.write("passw: " + passw)
-f.write("Encoded: " hash_func(passw.encode("utf-8")).hexdigest())
+f.write("Encoded: " + hash_func(passw.encode("utf-8")).hexdigest())
 f.close()
 if hash_func(passw.encode("utf-8")).hexdigest() != passwords:
     print(f"DENIED: " + p)
